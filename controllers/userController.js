@@ -1,4 +1,5 @@
 const User = require('../models/user')
+const Role = require('../models/role')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
@@ -21,7 +22,8 @@ class UserController {
       return res.status(404).json({ message: "Пользователь с таким email уже существует" })
     password = password.toString()
     const hashPassword = await bcrypt.hash(password.toString(), 5)
-    const user = new User({ email: email, password: hashPassword, username: username })
+    const userRole = await Role.findOne({ value: "USER" })
+    const user = new User({ email: email, password: hashPassword, username: username, roles: [userRole.value] })
     await user.save()
     const token = generateJwt(user._id, user.email)
     return res.json({ token })
