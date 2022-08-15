@@ -7,5 +7,6 @@ router.post('/regin', userController.regin)
 router.post('/login', userController.login)
 router.get('/auth', authMiddleware, userController.check)
 router.get('/get/all', userController.getUsers)
+router.post('/get', userController.getUserByEmail)
 
 module.exports = router
