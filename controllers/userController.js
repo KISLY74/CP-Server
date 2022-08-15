@@ -49,6 +49,10 @@ class UserController {
     const users = await User.find()
     return res.json(users)
   }
+  async getUserByEmail(req, res) {
+    const user = await User.findOne({ email: req.body.email })
+    return res.json(user)
+  }
 }
 
 module.exports = new UserController()
