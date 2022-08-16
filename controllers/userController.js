@@ -53,6 +53,10 @@ class UserController {
     const user = await User.findOne({ email: req.body.email })
     return res.json(user)
   }
+  async changeStatus(req, res) {
+    const user = await User.findOneAndUpdate({ email: req.body.email }, { status: req.body.status })
+    return res.json(user)
+  }
 }
 
 module.exports = new UserController()
