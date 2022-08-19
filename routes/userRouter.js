@@ -10,5 +10,7 @@ router.get('/get/all', userController.getUsers)
 router.post('/get', userController.getUserByEmail)
 router.put('/change/status', userController.changeStatus)
 router.put('/delete', userController.deleteUser)
+router.put('/add', userController.addToAdmins)
+router.put('/remove', userController.removeFromAdmins)
 
 module.exports = router
