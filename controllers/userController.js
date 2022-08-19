@@ -61,6 +61,14 @@ class UserController {
     const user = await User.deleteOne({ email: req.body.email })
     return res.json(user)
   }
+  async addToAdmins(req, res) {
+    const user = await User.findOneAndUpdate({ email: req.body.email }, { roles: ["ADMIN", "USER"] })
+    return res.json(user)
+  }
+  async removeFromAdmins(req, res) {
+    const user = await User.findOneAndUpdate({ email: req.body.email }, { roles: ["USER"] })
+    return res.json(user)
+  }
 }
 
 module.exports = new UserController()
