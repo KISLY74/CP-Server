@@ -23,7 +23,7 @@ class UserController {
     password = password.toString()
     const hashPassword = await bcrypt.hash(password.toString(), 5)
     const userRole = await Role.findOne({ value: "USER" })
-    const user = new User({ email: email, password: hashPassword, username: username, roles: [userRole.value], status: "Unblock" })
+    const user = new User({ email: email, password: hashPassword, username: username, roles: [userRole.value], status: "Unblock", collections: [] })
     await user.save()
     const token = generateJwt(user._id, user.email)
     return res.json({ token })
