@@ -13,6 +13,16 @@ class CollectionController {
     const collections = await Collection.find()
     return res.json(collections)
   }
+  async getCollectionsByUser(req, res) {
+    const user = await User.findOne({ email: req.body.email })
+    const collections = await CollectionController.getCollectionsByIds(user.collections)
+    return res.json(collections)
+  }
+  static async getCollectionsByIds(ids) {
+    const collections = await Collection.find({ _id: { $in: ids } })
+    return collections
+  }
 }
 
-module.exports = new CollectionController()
+const collectionController = new CollectionController()
+module.exports = { collectionController, CollectionController }
