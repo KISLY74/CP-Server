@@ -30,6 +30,10 @@ class CollectionController {
     const collection = await Collection.findOneAndUpdate({ _id: req.body.id }, { name: req.body.name, description: req.body.description, theme: req.body.theme })
     return res.json(collection)
   }
+  async changeItemsCollection(req, res) {
+    const result = await Collection.findOneAndUpdate({ _id: req.body.id }, { items: req.body.items })
+    return res.json(result)
+  }
 }
 
 const collectionController = new CollectionController()
