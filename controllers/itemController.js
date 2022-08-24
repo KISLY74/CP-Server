@@ -18,6 +18,16 @@ class ItemController {
     const items = await Item.find()
     return res.json(items)
   }
+  async getItemsByCollection(req, res) {
+    const collection = await Collection.findOne({ _id: req.body.id })
+    const items = await ItemController.getItemsByIds(collection.items)
+    return res.json(items)
+  }
+  static async getItemsByIds(ids) {
+    const items = await Item.find({ _id: { $in: ids } })
+    return items
+  }
 }
 
-module.exports = new ItemController()
+const itemController = new ItemController()
+module.exports = { itemController, ItemController }
