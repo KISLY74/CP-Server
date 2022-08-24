@@ -22,6 +22,10 @@ class CollectionController {
     const collections = await Collection.find({ _id: { $in: ids } })
     return collections
   }
+  async deleteCollection(req, res) {
+    const result = await Collection.deleteOne({ _id: req.body.id })
+    return res.json(result)
+  }
 }
 
 const collectionController = new CollectionController()
