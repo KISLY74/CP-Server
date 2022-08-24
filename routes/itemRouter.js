@@ -7,5 +7,6 @@ router.put('/delete', itemController.deleteItem)
 router.get('/get/all', itemController.getAllItems)
 router.post('/getAllByCollection', itemController.getItemsByCollection)
 router.post('/getAllByIds', ItemController.getItemsByIds)
+router.put('/edit', itemController.editItem)
 
 module.exports = router
