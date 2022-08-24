@@ -27,6 +27,10 @@ class ItemController {
     const items = await Item.find({ _id: { $in: ids } })
     return items
   }
+  async editItem(req, res) {
+    const item = await Item.findOneAndUpdate({ _id: req.body.id }, { name: req.body.name, tags: req.body.tags })
+    return res.json(item)
+  }
 }
 
 const itemController = new ItemController()
