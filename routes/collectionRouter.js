@@ -8,5 +8,6 @@ router.post('/getAllByUser', collectionController.getCollectionsByUser)
 router.post('/getByIds', CollectionController.getCollectionsByIds)
 router.put('/delete', collectionController.deleteCollection)
 router.put('/edit', collectionController.editCollection)
+router.put('/change/items', collectionController.changeItemsCollection)
 
 module.exports = router
