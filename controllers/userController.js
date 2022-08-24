@@ -69,6 +69,10 @@ class UserController {
     const user = await User.findOneAndUpdate({ email: req.body.email }, { roles: ["USER"] })
     return res.json(user)
   }
+  async changeCollectionsUser(req, res) {
+    const result = await User.findOneAndUpdate({ email: req.body.email }, { collections: req.body.collections })
+    return res.json(result)
+  }
 }
 
 module.exports = new UserController()
