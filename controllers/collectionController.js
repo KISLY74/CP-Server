@@ -26,6 +26,10 @@ class CollectionController {
     const result = await Collection.deleteOne({ _id: req.body.id })
     return res.json(result)
   }
+  async editCollection(req, res) {
+    const collection = await Collection.findOneAndUpdate({ _id: req.body.id }, { name: req.body.name, description: req.body.description, theme: req.body.theme })
+    return res.json(collection)
+  }
 }
 
 const collectionController = new CollectionController()
