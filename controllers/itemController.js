@@ -5,7 +5,7 @@ const Item = require("../models/item")
 class ItemController {
   async createItem(req, res) {
     const { name, tags, id } = req.body
-    const item = new Item({ name: name, tags: tags })
+    const item = new Item({ name: name, tags: tags, dateAddition: Date.now() })
     item.save()
     await Collection.findOneAndUpdate({ _id: id }, { $push: { items: item._id } })
     return res.json(item)
