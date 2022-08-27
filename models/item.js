@@ -6,4 +6,5 @@ const Item = new Schema({
   dateAddition: { type: Date }
 }, { versionKey: false })
 
-module.exports = new model('Item', Item)
+const ItemM = new model('ItemM', Item)
+module.exports = { ItemM, Item }
