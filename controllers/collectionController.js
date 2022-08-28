@@ -34,6 +34,19 @@ class CollectionController {
     const result = await Collection.findOneAndUpdate({ _id: req.body.id }, { items: req.body.items })
     return res.json(result)
   }
+  async addAdditionalFields(req, res) {
+    const result = await Collection.findOneAndUpdate({ _id: req.body.id },
+      {
+        $push:
+        {
+          stringsFields: req.body.stringsFields,
+          numbersFields: req.body.numbersFields,
+          bolleansFields: req.body.bolleansFields,
+          datesFields: req.body.datesFields
+        }
+      })
+    return res.json(result)
+  }
 }
 
 const collectionController = new CollectionController()
