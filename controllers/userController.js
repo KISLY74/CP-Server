@@ -1,4 +1,5 @@
 const User = require('../models/user')
+const Collection = require('../models/collection')
 const Role = require('../models/role')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
@@ -72,6 +73,10 @@ class UserController {
   async changeCollectionsUser(req, res) {
     const result = await User.findOneAndUpdate({ email: req.body.email }, { collections: req.body.collections })
     return res.json(result)
+  }
+  async getUserByCollection(req, res) {
+    const user = await User.findOne({ $in: { collections: req.body.id } })
+    return res.json(user)
   }
 }
 
