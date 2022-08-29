@@ -13,5 +13,6 @@ router.put('/delete', userController.deleteUser)
 router.put('/add', userController.addToAdmins)
 router.put('/remove', userController.removeFromAdmins)
 router.put('/change/collections', userController.changeCollectionsUser)
+router.post('/getByIdCollection', userController.getUserByCollection)
 
 module.exports = router
