@@ -41,11 +41,15 @@ class CollectionController {
         {
           stringsFields: req.body.stringsFields,
           numbersFields: req.body.numbersFields,
-          bolleansFields: req.body.bolleansFields,
+          booleansFields: req.body.booleansFields,
           datesFields: req.body.datesFields
         }
       })
     return res.json(result)
+  }
+  async getAdditionalFields(req, res) {
+    const collection = await Collection.findOne({ _id: req.body.id })
+    return res.json(collection)
   }
 }
 
