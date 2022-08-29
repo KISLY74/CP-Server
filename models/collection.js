@@ -7,7 +7,7 @@ const Collection = new Schema({
   items: [{ type: String, ref: 'Item' }],
   stringsFields: [{ type: String }],
   numbersFields: [{ type: String }],
-  bolleansFields: [{ type: String }],
+  booleansFields: [{ type: String }],
   datesFields: [{ type: String }]
 }, { versionKey: false })
 
