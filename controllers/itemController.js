@@ -39,6 +39,10 @@ class ItemController {
     const item = await ItemM.findOneAndUpdate({ _id: req.body.id }, { name: req.body.name, tags: req.body.tags })
     return res.json(item)
   }
+  async getItem(req, res) {
+    const item = await ItemM.findOne({ _id: req.body.id })
+    return res.json(item)
+  }
 }
 
 const itemController = new ItemController()
