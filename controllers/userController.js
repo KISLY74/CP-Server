@@ -14,7 +14,7 @@ const generateJwt = (id, email) => {
 
 class UserController {
   async regin(req, res) {
-    let { email, password, username } = req.body
+    let { email, password, username, isAdmin } = req.body
     if (!email || !password || !username) {
       return res.status(404).json({ message: "Заполните пустые поля" })
     }
@@ -23,8 +23,9 @@ class UserController {
       return res.status(404).json({ message: "Пользователь с таким email уже существует" })
     password = password.toString()
     const hashPassword = await bcrypt.hash(password.toString(), 5)
-    const userRole = await Role.findOne({ value: "USER" })
-    const user = new User({ email: email, password: hashPassword, username: username, roles: [userRole.value], status: "Unblock", collections: [] })
+    let adminRoles = ["USER", "ADMIN"], userRoles = ["USER"], roles = []
+    isAdmin ? roles = adminRoles : roles = userRoles
+    const user = new User({ email: email, password: hashPassword, username: username, roles: roles, status: "Unblock", collections: [] })
     await user.save()
     const token = generateJwt(user._id, user.email)
     return res.json({ token })
