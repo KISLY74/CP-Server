@@ -75,7 +75,7 @@ class UserController {
     return res.json(result)
   }
   async getUserByCollection(req, res) {
-    const user = await User.findOne({ $in: { collections: req.body.id } })
+    const user = await User.findOne({ collections: { $in: req.body.id } })
     return res.json(user)
   }
 }
