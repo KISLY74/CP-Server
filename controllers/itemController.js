@@ -36,12 +36,19 @@ class ItemController {
     return items
   }
   async editItem(req, res) {
-    let obj = {}
-    Object.keys(req.body.fields).map((e, i) => {
-      if (i > 1) obj[e] = "string"
-    })
-    Item.add(obj)
-    const item = await ItemM.findOneAndUpdate({ _id: req.body.id }, req.body.fields)
+    const { id, name, tags, additionalFields } = req.body
+    let fieldsSchema = {}, fieldsEdit = {}, types = ["string", "number", "boolean", "date"]
+    for (let i = 0; i < additionalFields.length; i++) {
+      for (let key in additionalFields[i]) {
+        fieldsSchema[key] = types[i]
+        fieldsEdit[key] = additionalFields[i][key]
+      }
+    }
+    Item.add(fieldsSchema)
+    const item = await ItemM.findOneAndUpdate(
+      { _id: id },
+      { name: name, tags: tags, ...fieldsEdit }
+    )
     return res.json(item)
   }
   async getItem(req, res) {
