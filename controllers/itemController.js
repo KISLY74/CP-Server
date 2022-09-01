@@ -36,7 +36,12 @@ class ItemController {
     return items
   }
   async editItem(req, res) {
-    const item = await ItemM.findOneAndUpdate({ _id: req.body.id }, { name: req.body.name, tags: req.body.tags })
+    let obj = {}
+    Object.keys(req.body.fields).map((e, i) => {
+      if (i > 1) obj[e] = "string"
+    })
+    Item.add(obj)
+    const item = await ItemM.findOneAndUpdate({ _id: req.body.id }, req.body.fields)
     return res.json(item)
   }
   async getItem(req, res) {
