@@ -55,6 +55,14 @@ class ItemController {
     const item = await ItemM.findOne({ _id: req.body.id })
     return res.json(item)
   }
+  async addComment(req, res) {
+    const item = await ItemM.findOneAndUpdate({ _id: req.body.id }, { $push: { comments: req.body.comment } })
+    return res.json(item)
+  }
+  async getComments(req, res) {
+    const item = await ItemM.findOne({ _id: req.body.id })
+    return res.json(item.comments)
+  }
 }
 
 const itemController = new ItemController()
