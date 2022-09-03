@@ -5,7 +5,7 @@ const Item = new Schema({
   tags: [{ type: String, required: true }],
   dateAddition: { type: Date },
   comments: [{ type: Object }],
-  isAccess: { type: Boolean }
+  isAccess: { type: Boolean, default: true }
 }, { versionKey: false })
 
 const ItemM = new model('ItemM', Item)
