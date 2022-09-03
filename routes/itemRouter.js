@@ -11,5 +11,8 @@ router.put('/edit', itemController.editItem)
 router.post('/get', itemController.getItem)
 router.put('/add/comment', itemController.addComment)
 router.post('/get/comments', itemController.getComments)
+router.post('/access/open', itemController.openAccessToView)
+router.post('/access/close', itemController.closeAccessToView)
+router.post('/access/get', itemController.getDataAccess)
 
 module.exports = router
