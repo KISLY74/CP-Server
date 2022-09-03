@@ -63,6 +63,18 @@ class ItemController {
     const item = await ItemM.findOne({ _id: req.body.id })
     return res.json(item.comments)
   }
+  async openAccessToView(req, res) {
+    const item = await ItemM.findOneAndUpdate({ _id: req.body.id }, { isAccess: true })
+    return res.json(item)
+  }
+  async closeAccessToView(req, res) {
+    const item = await ItemM.findOneAndUpdate({ _id: req.body.id }, { isAccess: false })
+    return res.json(item)
+  }
+  async getDataAccess(req, res) {
+    const item = await ItemM.findOne({ _id: req.body.id })
+    return res.json(item.isAccess)
+  }
 }
 
 const itemController = new ItemController()
