@@ -8,7 +8,7 @@ router.post('/getAllByUser', collectionController.getCollectionsByUser)
 router.post('/getByIds', CollectionController.getCollectionsByIds)
 router.put('/delete', collectionController.deleteCollection)
 router.put('/edit', collectionController.editCollection)
-router.put('/change/items', collectionController.changeItemsCollection)
+router.post('/change/items', collectionController.changeItemsCollection)
 router.put('/addFields', collectionController.addAdditionalFields)
 router.post('/getFields', collectionController.getAdditionalFields)
 
