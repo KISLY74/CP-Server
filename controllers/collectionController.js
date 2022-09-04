@@ -1,5 +1,6 @@
 const Collection = require("../models/collection")
 const User = require("../models/user")
+const { ItemM } = require("../models/item")
 
 class CollectionController {
   async createCollection(req, res) {
@@ -31,8 +32,15 @@ class CollectionController {
     return res.json(collection)
   }
   async changeItemsCollection(req, res) {
-    const result = await Collection.findOneAndUpdate({ _id: req.body.id }, { items: req.body.items })
-    return res.json(result)
+    const collection = await Collection.findOne({ _id: req.body.id })
+    const items = await ItemM.find()
+    let existIds = [], itemsId = []
+    items.map(e => itemsId.push(e._id))
+    itemsId.forEach(e => {
+      if (collection.items.includes(e)) existIds.push(e)
+    })
+    const collectionUp = await Collection.findOneAndUpdate({ _id: req.body.id }, { items: existIds })
+    return res.json(collectionUp)
   }
   async addAdditionalFields(req, res) {
     const result = await Collection.findOneAndUpdate({ _id: req.body.id },
