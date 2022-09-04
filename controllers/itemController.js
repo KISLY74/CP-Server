@@ -5,7 +5,7 @@ const { ItemM, Item } = require("../models/item")
 class ItemController {
   async createItem(req, res) {
     const { name, tags, id, additionalFields } = req.body
-    let fieldsSchema = {}, fieldsCreate = {}, types = ["string", "number", "boolean", "date"]
+    let fieldsSchema = {}, fieldsCreate = {}, types = ["string", "number", "boolean", "date", "string"]
     for (let i = 0; i < additionalFields.length; i++) {
       for (let key in additionalFields[i]) {
         fieldsSchema[key] = types[i]
@@ -37,7 +37,7 @@ class ItemController {
   }
   async editItem(req, res) {
     const { id, name, tags, additionalFields } = req.body
-    let fieldsSchema = {}, fieldsEdit = {}, types = ["string", "number", "boolean", "date"]
+    let fieldsSchema = {}, fieldsEdit = {}, types = ["string", "number", "boolean", "date", "string"]
     for (let i = 0; i < additionalFields.length; i++) {
       for (let key in additionalFields[i]) {
         fieldsSchema[key] = types[i]

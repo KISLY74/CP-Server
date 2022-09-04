@@ -42,7 +42,8 @@ class CollectionController {
           stringsFields: req.body.stringsFields,
           numbersFields: req.body.numbersFields,
           booleansFields: req.body.booleansFields,
-          datesFields: req.body.datesFields
+          datesFields: req.body.datesFields,
+          textsFields: req.body.textsFields
         }
       })
     return res.json(result)
