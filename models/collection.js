@@ -8,7 +8,8 @@ const Collection = new Schema({
   stringsFields: [{ type: String }],
   numbersFields: [{ type: String }],
   booleansFields: [{ type: String }],
-  datesFields: [{ type: String }]
+  datesFields: [{ type: String }],
+  textsFields: [{ type: String }]
 }, { versionKey: false })
 
 module.exports = new model('Collection', Collection)
