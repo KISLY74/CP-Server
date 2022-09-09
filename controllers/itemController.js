@@ -75,6 +75,20 @@ class ItemController {
     const item = await ItemM.findOne({ _id: req.body.id })
     return res.json(item.isAccess)
   }
+  async addLike(req, res) {
+    const item = await ItemM.findOneAndUpdate({ _id: req.body.id }, { $push: { likes: req.body.userIsLike } })
+    return res.json(item)
+  }
+  async getCountLikesByItem(req, res) {
+    const item = await ItemM.findOne({ _id: req.body.id })
+    let count = 0
+    item.likes.map(e => {
+      Object.values(e).map(val => {
+        if (val === true) count++
+      })
+    })
+    return res.json(count)
+  }
 }
 
 const itemController = new ItemController()
