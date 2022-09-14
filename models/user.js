@@ -6,7 +6,8 @@ const User = new Schema({
   username: { type: String, required: true },
   roles: [{ type: String, ref: 'Role' }],
   status: { type: String, required: true },
-  collections: [{ type: String, ref: 'Collection' }]
+  collections: [{ type: String, ref: 'Collection' }],
+  likes: [{ type: Object }]
 }, { versionKey: false })
 
 module.exports = new model('User', User)
