@@ -14,7 +14,7 @@ router.post('/get/comments', itemController.getComments)
 router.post('/access/open', itemController.openAccessToView)
 router.post('/access/close', itemController.closeAccessToView)
 router.post('/access/get', itemController.getDataAccess)
-router.put('/add/like', itemController.addLike)
+router.put('/add/like', itemController.addDelLike)
 router.post('/getCountLikes', itemController.getCountLikesByItem)
 
 module.exports = router
